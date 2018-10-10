@@ -41,6 +41,14 @@ namespace UnitTestProject1
             ScoreShouldBe("Love Fifteen");
         }
 
+        [TestMethod]
+        public void Love_Thirty()
+        {
+            _tennisGame.SecondPlayerScore();
+            _tennisGame.SecondPlayerScore();
+            ScoreShouldBe("Love Thirty");
+        }
+
         private void GivenFirstPlayerScoreTimes(int times)
         {
             for (int i = 0; i < times; i++)
