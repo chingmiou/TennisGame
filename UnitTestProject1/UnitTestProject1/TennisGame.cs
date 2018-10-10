@@ -9,7 +9,8 @@ namespace UnitTestProject1
         private Dictionary<int, string> _scoreLookup = new Dictionary<int, string>
         {
             {1,"Fifteen" },
-            {2,"Thirty" }
+            {2,"Thirty" },
+            {3,"Forty" }
         };
 
         public string Score()
