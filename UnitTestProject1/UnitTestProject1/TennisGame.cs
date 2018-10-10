@@ -13,8 +13,14 @@ namespace UnitTestProject1
             {3,"Forty" }
         };
 
+        private int _secondPlayerScoreTimes;
+
         public string Score()
         {
+            if (_secondPlayerScoreTimes == 1)
+            {
+                return "Love Fifteen";
+            }
             if (_firstPlayerScoreTimes > 0)
             {
                 return $"{_scoreLookup[_firstPlayerScoreTimes]} Love";
@@ -26,6 +32,11 @@ namespace UnitTestProject1
         public void FirstPlayerScore()
         {
             _firstPlayerScoreTimes++;
+        }
+
+        public void SecondPlayerScore()
+        {
+            _secondPlayerScoreTimes++;
         }
     }
 }
