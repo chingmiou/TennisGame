@@ -23,9 +23,16 @@ namespace UnitTestProject1
         [TestMethod]
         public void Thirty_Love()
         {
-            _tennisGame.FirstPlayerScore();
-            _tennisGame.FirstPlayerScore();
+            GivenFirstPlayerScoreTimes(2);
             ScoreShouldBe("Thirty Love");
+        }
+
+        private void GivenFirstPlayerScoreTimes(int times)
+        {
+            for (int i = 0; i < times; i++)
+            {
+                _tennisGame.FirstPlayerScore();
+            }
         }
 
         private void ScoreShouldBe(string expected)
