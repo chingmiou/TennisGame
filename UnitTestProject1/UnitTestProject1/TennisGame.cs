@@ -1,4 +1,6 @@
-﻿namespace UnitTestProject1
+﻿using System.Collections.Generic;
+
+namespace UnitTestProject1
 {
     public class TennisGame
     {
@@ -6,13 +8,14 @@
 
         public string Score()
         {
-            if (_firstPlayerScoreTimes == 2)
+            var scoreLookup = new Dictionary<int, string>
             {
-                return "Thirty Love";
-            }
-            if (_firstPlayerScoreTimes == 1)
+                {1,"Fifteen" },
+                {2,"Thirty" },
+            };
+            if (_firstPlayerScoreTimes > 0)
             {
-                return "Fifteen Love";
+                return $"{scoreLookup[_firstPlayerScoreTimes]} Love";
             }
 
             return "Love All";
