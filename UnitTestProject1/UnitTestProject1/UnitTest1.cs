@@ -5,7 +5,7 @@ namespace UnitTestProject1
     [TestClass]
     public class TennisGameTests
     {
-        private TennisGame _tennisGame = new TennisGame();
+        private TennisGame _tennisGame = new TennisGame("Joey", "Tom");
 
         [TestMethod]
         public void Love_All()
@@ -57,6 +57,14 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
+        public void Fifteen_All()
+        {
+            _tennisGame.FirstPlayerScore();
+            _tennisGame.SecondPlayerScore();
+            ScoreShouldBe("Fifteen All");
+        }
+
+        [TestMethod]
         public void Deuce()
         {
             GivenFirstPlayerScoreTimes(3);
@@ -65,11 +73,11 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void Fifteen_All()
+        public void FirstPlayer_Adv()
         {
-            _tennisGame.FirstPlayerScore();
-            _tennisGame.SecondPlayerScore();
-            ScoreShouldBe("Fifteen All");
+            GivenFirstPlayerScoreTimes(4);
+            GivenSecondPlayerScoreTimes(3);
+            ScoreShouldBe("Joey Adv");
         }
 
         private void GivenSecondPlayerScoreTimes(int times)
