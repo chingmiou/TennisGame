@@ -32,9 +32,10 @@ namespace UnitTestProject1
                 {
                     if (Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1)
                     {
-                        var advPlayer = _firstPlayerScoreTimes > _secondPlayerScoreTimes ? _firstPlayerName : _secondPlayerName;
-                        return $"{advPlayer} Adv";
+                        return $"{AdvPlayer()} Adv";
                     }
+
+                    return $"{AdvPlayer()} Win";
                 }
 
                 return $"{_scoreLookup[_firstPlayerScoreTimes]} {_scoreLookup[_secondPlayerScoreTimes]}";
@@ -45,6 +46,12 @@ namespace UnitTestProject1
                 return $"Deuce";
             }
             return $"{_scoreLookup[_firstPlayerScoreTimes]} All";
+        }
+
+        private string AdvPlayer()
+        {
+            var advPlayer = _firstPlayerScoreTimes > _secondPlayerScoreTimes ? _firstPlayerName : _secondPlayerName;
+            return advPlayer;
         }
 
         public void FirstPlayerScore()
