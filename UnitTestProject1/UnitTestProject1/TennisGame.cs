@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace UnitTestProject1
 {
     public class TennisGame
     {
-        public string FirstPlayerName { get; }
-        public string SecondPlayerName { get; }
+        private readonly string _firstPlayerName;
+        private readonly string _secondPlayerName;
         private int _firstPlayerScoreTimes;
         private int _secondPlayerScoreTimes;
 
@@ -19,19 +20,20 @@ namespace UnitTestProject1
 
         public TennisGame(string firstPlayerName, string secondPlayerName)
         {
-            FirstPlayerName = firstPlayerName;
-            SecondPlayerName = secondPlayerName;
+            _firstPlayerName = firstPlayerName;
+            _secondPlayerName = secondPlayerName;
         }
 
         public string Score()
         {
             if (_firstPlayerScoreTimes != _secondPlayerScoreTimes)
             {
-                if (_firstPlayerScoreTimes > 3)
+                if (_firstPlayerScoreTimes > 3 || _secondPlayerScoreTimes > 3)
                 {
-                    if (_firstPlayerScoreTimes - _secondPlayerScoreTimes == 1)
+                    if (Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1)
                     {
-                        return "Joey Adv";
+                        var advPlayer = _firstPlayerScoreTimes > _secondPlayerScoreTimes ? _firstPlayerName : _secondPlayerName;
+                        return $"{advPlayer} Adv";
                     }
                 }
 
