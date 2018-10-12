@@ -26,26 +26,49 @@ namespace UnitTestProject1
 
         public string Score()
         {
-            if (_firstPlayerScoreTimes != _secondPlayerScoreTimes)
-            {
-                if (_firstPlayerScoreTimes > 3 || _secondPlayerScoreTimes > 3)
-                {
-                    if (Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1)
-                    {
-                        return $"{AdvPlayer()} Adv";
-                    }
+            return IsScoreDifferent()
+                ? IsReadyForWin() ? AdvState() : LookupScore()
+                : IsDeuce() ? Deuce() : SameScore();
+        }
 
-                    return $"{AdvPlayer()} Win";
-                }
-
-                return $"{_scoreLookup[_firstPlayerScoreTimes]} {_scoreLookup[_secondPlayerScoreTimes]}";
-            }
-
-            if (_firstPlayerScoreTimes >= 3)
-            {
-                return $"Deuce";
-            }
+        private string SameScore()
+        {
             return $"{_scoreLookup[_firstPlayerScoreTimes]} All";
+        }
+
+        private static string Deuce()
+        {
+            return $"Deuce";
+        }
+
+        private string AdvState()
+        {
+            return IsAdv() ? $"{AdvPlayer()} Adv" : $"{AdvPlayer()} Win";
+        }
+
+        private bool IsAdv()
+        {
+            return Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1;
+        }
+
+        private bool IsReadyForWin()
+        {
+            return _firstPlayerScoreTimes > 3 || _secondPlayerScoreTimes > 3;
+        }
+
+        private bool IsScoreDifferent()
+        {
+            return _firstPlayerScoreTimes != _secondPlayerScoreTimes;
+        }
+
+        private string LookupScore()
+        {
+            return $"{_scoreLookup[_firstPlayerScoreTimes]} {_scoreLookup[_secondPlayerScoreTimes]}";
+        }
+
+        private bool IsDeuce()
+        {
+            return _firstPlayerScoreTimes >= 3;
         }
 
         private string AdvPlayer()
