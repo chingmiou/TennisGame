@@ -49,6 +49,14 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
+        public void Thirty_All()
+        {
+            GivenFirstPlayerScoreTimes(2);
+            GivenSecondPlayerScoreTimes(2);
+            ScoreShouldBe("Thirty All");
+        }
+
+        [TestMethod]
         public void Fifteen_All()
         {
             _tennisGame.FirstPlayerScore();
