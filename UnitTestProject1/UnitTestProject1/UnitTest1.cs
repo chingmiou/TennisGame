@@ -52,9 +52,24 @@ namespace UnitTestProject1
         [TestMethod]
         public void Love_Thirty()
         {
-            _tennisGame.SecondPlayerScore();
-            _tennisGame.SecondPlayerScore();
+            GivenSecondPlayerScoreTimes(2);
             ScoreShouldBe("Love Thirty");
+        }
+
+        private void GivenSecondPlayerScoreTimes(int times)
+        {
+            for (var i = 0; i < times; i++)
+            {
+                _tennisGame.SecondPlayerScore();
+            }
+        }
+
+        [TestMethod]
+        public void Fifteen_All()
+        {
+            GivenFirstPlayerScoreTimes(1);
+            GivenSecondPlayerScoreTimes(1);
+            ScoreShouldBe("Fifteen All");
         }
 
         private void ScoreShouldBe(string expected)
