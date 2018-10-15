@@ -4,6 +4,8 @@ namespace UnitTestProject1
 {
     public class TennisGame
     {
+        private readonly string _firstPlayerName;
+        private readonly string _secondplayerName;
         private int _firstPlayerScoreTimes;
 
         private Dictionary<int, string> _scoreLookup = new Dictionary<int, string>
@@ -16,10 +18,24 @@ namespace UnitTestProject1
 
         private int _secondPlayerScoreTimes;
 
+        public TennisGame(string firstPlayerName, string secondplayerName)
+        {
+            _firstPlayerName = firstPlayerName;
+            _secondplayerName = secondplayerName;
+        }
+
         public string Score()
         {
             if (_firstPlayerScoreTimes != _secondPlayerScoreTimes)
             {
+                if (_firstPlayerScoreTimes > 3)
+                {
+                    if (_firstPlayerScoreTimes - _secondPlayerScoreTimes == 1)
+                    {
+                        return $"{_firstPlayerName} Adv";
+                    }
+                }
+
                 return $"{_scoreLookup[_firstPlayerScoreTimes]} {_scoreLookup[_secondPlayerScoreTimes]}";
             }
             if (_firstPlayerScoreTimes >= 3)

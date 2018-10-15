@@ -5,7 +5,7 @@ namespace UnitTestProject1
     [TestClass]
     public class TennisGameTests
     {
-        private TennisGame _tennisGame = new TennisGame();
+        private TennisGame _tennisGame = new TennisGame("Joey", "Tom");
 
         [TestMethod]
         public void Love_All()
@@ -70,6 +70,14 @@ namespace UnitTestProject1
             GivenFirstPlayerScoreTimes(3);
             GivenSecondPlayerScoreTimes(3);
             ScoreShouldBe("Deuce");
+        }
+
+        [TestMethod]
+        public void FirstPlayer_Adv()
+        {
+            GivenFirstPlayerScoreTimes(4);
+            GivenSecondPlayerScoreTimes(3);
+            ScoreShouldBe("Joey Adv");
         }
 
         private void GivenSecondPlayerScoreTimes(int times)
