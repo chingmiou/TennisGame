@@ -6,16 +6,18 @@ namespace UnitTestProject1
     {
         private int _firstPlayerScoreTimes;
 
+        private Dictionary<int, string> _scoreLookup = new Dictionary<int, string>
+        {
+            {1, "Fifteen"},
+            {2, "Thirty"},
+            {3, "Forty"},
+        };
+
         public string Score()
         {
-            var scoreLookup = new Dictionary<int, string>
-            {
-                {1, "Fifteen"},
-                {2, "Thirty"},
-            };
             if (_firstPlayerScoreTimes > 0)
             {
-                return $"{scoreLookup[_firstPlayerScoreTimes]} Love";
+                return $"{_scoreLookup[_firstPlayerScoreTimes]} Love";
             }
 
             return "Love All";
