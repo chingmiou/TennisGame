@@ -49,6 +49,14 @@ namespace UnitTestProject1
             ScoreShouldBe("Love Fifteen");
         }
 
+        [TestMethod]
+        public void Love_Thirty()
+        {
+            _tennisGame.SecondPlayerScore();
+            _tennisGame.SecondPlayerScore();
+            ScoreShouldBe("Love Thirty");
+        }
+
         private void ScoreShouldBe(string expected)
         {
             Assert.AreEqual(expected, _tennisGame.Score());
