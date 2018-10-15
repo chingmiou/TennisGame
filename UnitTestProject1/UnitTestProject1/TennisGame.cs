@@ -27,24 +27,54 @@ namespace UnitTestProject1
 
         public string Score()
         {
-            if (_firstPlayerScoreTimes != _secondPlayerScoreTimes)
-            {
-                if (_firstPlayerScoreTimes > 3 || _secondPlayerScoreTimes > 3)
-                {
-                    if (Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1)
-                    {
-                        return $"{AdvPlayer()} Adv";
-                    }
-                    return $"{AdvPlayer()} Win";
-                }
+            return IsScoreDifferent() ?
+                IsReadyForWin() ? AdvState() : LookupScore() :
+                IsDeuce() ? Deuce() : SameScore();
+        }
 
-                return $"{_scoreLookup[_firstPlayerScoreTimes]} {_scoreLookup[_secondPlayerScoreTimes]}";
-            }
-            if (_firstPlayerScoreTimes >= 3)
-            {
-                return "Deuce";
-            }
+        private string SameScore()
+        {
             return $"{_scoreLookup[_firstPlayerScoreTimes]} All";
+        }
+
+        private static string Deuce()
+        {
+            return "Deuce";
+        }
+
+        private bool IsDeuce()
+        {
+            return _firstPlayerScoreTimes >= 3;
+        }
+
+        private bool IsScoreDifferent()
+        {
+            return _firstPlayerScoreTimes != _secondPlayerScoreTimes;
+        }
+
+        private string LookupScore()
+        {
+            return $"{_scoreLookup[_firstPlayerScoreTimes]} {_scoreLookup[_secondPlayerScoreTimes]}";
+        }
+
+        private string AdvState()
+        {
+            if (IsAdv())
+            {
+                return $"{AdvPlayer()} Adv";
+            }
+
+            return $"{AdvPlayer()} Win";
+        }
+
+        private bool IsReadyForWin()
+        {
+            return _firstPlayerScoreTimes > 3 || _secondPlayerScoreTimes > 3;
+        }
+
+        private bool IsAdv()
+        {
+            return Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1;
         }
 
         private string AdvPlayer()
